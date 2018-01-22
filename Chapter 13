@@ -1,0 +1,127 @@
+import xml.etree.ElementTree as ET
+
+data = '''
+<person>
+  <name>Chuck</name>
+  <phone type="intl">
+     +1 734 303 4456
+   </phone>
+   <email hide="yes"/>
+</person>'''
+
+tree = ET.fromstring(data)
+print('Name:', tree.find('name').text)
+print('Attr:', tree.find('email').get('hide'))
+
+
+#Findall
+import xml.etree.ElementTree as ET
+
+input = '''
+<stuff>
+    <users>
+        <user x="2">
+            <id>001</id>
+            <name>Chuck</name>
+        </user>
+        <user x="7">
+            <id>009</id>
+            <name>Brent</name>
+        </user>
+    </users>
+</stuff>'''
+
+stuff = ET.fromstring(input)
+lst = stuff.findall('users/user')
+print('User count:', len(lst))
+
+for item in lst:
+    print('Name', item.find('name').text)
+    print('Id', item.find('id').text)
+    print('Attribute', item.get("x"))
+
+
+#exercise
+import urllib.request, urllib.parse, urllib.error
+import xml.etree.ElementTree as ET
+
+serviceurl = 'http://maps.googleapis.com/maps/api/geocode/xml?'
+
+while True:
+    address = input('Enter location: ')
+    if len(address) < 1: break
+
+    url = serviceurl + urllib.parse.urlencode({'address': address})
+    print('Retrieving', url)
+    uh = urllib.request.urlopen(url)
+    data = uh.read()
+    print('Retrieved', len(data), 'characters')
+    print(data.decode())
+    tree = ET.fromstring(data)
+
+    results = tree.findall('result')
+    lat = results[0].find('geometry').find('location').find('lat').text
+    lng = results[0].find('geometry').find('location').find('lng').text
+    location = results[0].find('formatted_address').text
+
+    print('lat', lat, 'lng', lng)
+    print(location)
+
+#sample
+import urllib.request, urllib.parse, urllib.error
+import xml.etree.ElementTree as ET
+
+serviceurl = 'http://maps.googleapis.com/maps/api/geocode/xml?'
+
+while True:
+    address = input('Enter location: ')
+    if len(address) < 1: break
+
+    url = serviceurl + urllib.parse.urlencode({'address': address})
+    print('Retrieving', url)
+    uh = urllib.request.urlopen(url)
+    data = uh.read()
+    print('Retrieved', len(data), 'characters')
+    print(data.decode())
+    tree = ET.fromstring(data)
+
+    results = tree.findall('result')
+    lat = results[0].find('geometry').find('location').find('lat').text
+    lng = results[0].find('geometry').find('location').find('lng').text
+    location = results[0].find('formatted_address').text
+
+    print('lat', lat, 'lng', lng)
+    print(location)
+
+
+#real exercise
+#real exercise
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+import ssl
+import xml.etree.ElementTree as ET
+
+# Ignore SSL certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+url = input('Enter - ')
+html = urllib.request.urlopen(url, context=ctx).read()
+
+print('Retrieving', url)
+uh = urllib.request.urlopen(url)
+data = uh.read()
+print('Retrieved', len(data), 'characters')
+
+tree = ET.fromstring(data)
+
+# find all count elements
+counts = tree.findall('comments/comment/count')
+
+# extract the value of each count element and add it to the total
+total = 0
+for count in counts:
+    total += int(count.text)
+
+print ('total: ', total)
