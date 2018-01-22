@@ -1,0 +1,92 @@
+fruit = 'banana'
+letter = fruit[1]
+print(letter)
+length=len(fruit)
+last=fruit[length-1]
+print(last)
+fruit[-1]
+
+index = 0
+while index < len(fruit):
+    letter = fruit[index]
+    print(letter)
+    index = index + 1
+
+index = 4
+while index >= len(fruit):
+    letter = fruit[index]
+    print(letter)
+    index = index - 1
+
+for letter in fruit:
+    print(letter)
+
+s='Monty Python'
+print(s[0:5])
+print(s[6:20])
+
+fruit='banana'
+fruit[:3]
+fruit[3:]
+
+greating='Hello Chenlu'
+new_greating='J'+greating[1:]
+print(new_greating)
+
+word = 'Hello Chenlu'
+count = 0
+for letter in word:
+    if letter =='l':
+        count = count + 1
+
+print(count)
+
+word = 'banana'
+count = 0
+    for letter in word:
+        if letter == 'a':
+            count = count + 1
+print(count)
+
+word == 'Chenlu'
+if word < 'banana':
+    print('Your Word, ' + word + ' , comes before banana.')
+elif word > 'banana':
+    print('Your Word, ' + word + ' , comes after banana.')
+else:
+    print('Hello Bananas.')
+
+word == 'Chenlu'
+newword = word.upper()
+print(newword)
+
+word = 'Chenlu'
+index = word.find('u')
+print(index)
+
+word = 'Hello, good morning, Chenlu'
+index = word.find('o',5)
+print(index)
+
+line = '          Be Happy, Chenlu   '
+line.strip()
+
+line = 'Be Happy'
+line.startswith('be')
+line.startswith('h')
+line.lower()
+line.lower().startswith('be')
+line.lower().startswith('h')
+
+data = 'From stephen.marquard@uct.ac.za Sat Jan 5 09:14:16 2008'
+a = data.find('@')
+b = data.find(' ',a)
+newData = data[a+1:b]
+print(newData)
+
+text = "X-DSPAM-Confidence:    0.8475";
+a = text.find(':')
+newText= text[a+1:]
+new=newText.strip()
+b=float(new)
+print(b)
