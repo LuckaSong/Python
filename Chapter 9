@@ -1,0 +1,91 @@
+eng2sp=dict()
+eng2sp['one']='uno'
+print(eng2sp)
+
+eng2sp={'one':'uno','two':'dos','three':'tres'}
+print(eng2sp['two'])
+
+'one' in eng2sp
+
+vals=list(eng2sp.values())
+'uno' in vals
+
+word='brontosaurs'
+d=dict()
+for c in word:
+    if c not in d:
+        d[c]=1
+    else:
+        d[c]=d[c]+1
+
+print(d)
+
+word='brontosaurs'
+d=dict()
+for c in word:
+    d[c]=d.get(c,0)+1
+
+print(d)
+
+
+
+
+
+fname=input('Enter the file name:')
+try:
+    fhand=open(fname)
+except:
+    print('File cannot be opened:',fname)
+    exit()
+
+counts=dict()
+for line in fhand:
+    line=line.rstrip()
+    line=line.translate(line.maketrans('',',string.puctuation))
+    line=line.lower()
+    words=line.split()
+    for word in words:
+        counts[word]=counts.get(word,0)+1
+
+print(counts)
+
+
+
+
+
+
+
+name = input("Enter file:")
+if len(name) < 1 : name = "mbox-short.txt"
+handle = open(name)
+
+counts=dict()
+for line in handle:
+    line=line.rstrip()
+    if not line.startswith('From '):continue
+    line=line[5:]
+    words=line.split()
+    words=words[0]
+    counts[words]=counts.get(words,0)+1
+
+largest=-1
+theword = None
+for k,v in counts.items():
+    if v > largest:
+        largest = v
+        theword = k
+print(theword,largest)
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
