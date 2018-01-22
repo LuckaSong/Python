@@ -1,0 +1,82 @@
+fhand=open('mbox.txt')
+print(fhand)
+
+stuff="Hello\nWorld"
+stuff
+print(stuff)
+len(stuff)
+
+fhand=open('mbox-short.txt')
+count=0
+for line in fhand:
+    count=count+1
+
+print('Line Count:',count)
+
+fhand=open('mbox-short.txt')
+inp=fhand.read()
+print(len(inp))
+print(inp[:20])
+
+fhand=open('mbox-short.txt')
+count=0
+for line in fhand:
+    line=line.rstrip()
+    if line.startswith('From:'):
+        print(line)
+
+fhand=open('mbox-short.txt')
+for line in fhand:
+    line=line.rstrip()
+    if not line.startswith('From:'):
+        continue
+    print(line)
+
+fhand=open('mbox-short.txt')
+for line in fhand:
+    line=line.rstrip()
+    if line.find('@uct.ac.za')==-1:
+        continue
+    print(line)
+
+fname=input('Please Enter the Fill Name:')
+
+fhand=open(fname)
+count=0
+for line in fhand:
+    if line.startswith('Subject:'):
+        count=count+1
+
+print('There were',count,'subject lines in',fname)
+
+fname=input('Please Enter the Fill Name:')
+try:
+    fhand=open(fname)
+except:
+    print('File cannot be opened:',fname)
+    exit()
+count=0
+for line in fhand:
+    if line.startswith('Subject:'):
+        count=count+1
+print('There were',count,'subject lines in',fname)
+
+fname = input("Enter file name: ")
+fh = open(fname)
+for line in fh:
+    line=line.rstrip()
+    lines=line.upper()
+    print(lines)
+
+fname = input("Enter file name: ")
+fh = open(fname)
+count=0
+average=0
+for line in fh:
+    line=line.rstrip()
+    if not line.startswith("X-DSPAM-Confidence:") : continue
+    x=line[19:]
+    y=float(x)
+    count=count+1
+    average=average+y
+print("Average spam confidence:",average/count)
