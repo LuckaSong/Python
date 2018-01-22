@@ -1,0 +1,90 @@
+txt = 'but soft what light in yonder window breaks'
+words = txt.split()
+t = list()
+for word in words:
+    t.append((len(word), word))
+
+t.sort(reverse=True)
+
+res = list()
+for length, word in t:
+    res.append(word)
+
+print(res)
+
+addr = 'monty@python.org'
+uname, domain = addr.split('@')
+
+d = {'a':10, 'b':1, 'c':22}
+t = list(d.items())
+print(t)
+[('b', 1), ('a', 10), ('c', 22)]
+
+d = {'a':10, 'b':1, 'c':22}
+t = list(d.items())
+>>> t
+[('b', 1), ('a', 10), ('c', 22)]
+
+t.sort()
+>>> t
+[('a', 10), ('b', 1), ('c', 22)]
+
+for key, val in list(d.items()):
+print(val, key)
+
+d = {'a':10, 'b':1, 'c':22}
+l = list()
+for key, val in d.items() :
+l.append( (val, key) )
+>>> l
+[(10, 'a'), (22, 'c'), (1, 'b')]
+l.sort(reverse=True)
+>>> l
+[(22, 'c'), (10, 'a'), (1, 'b')]
+
+import string
+fhand = open('romeo-full.txt')
+counts = dict()
+for line in fhand:
+    line = line.translate(str.maketrans('', '', string.punctuation))
+    line = line.lower()
+    words = line.split()
+    for word in words:
+        if word not in counts:
+            counts[word] = 1
+        else:
+            counts[word] += 1
+
+# Sort the dictionary by value
+lst = list()
+for key, val in list(counts.items()):
+    lst.append((val, key))
+
+lst.sort(reverse=True)
+
+for key, val in lst[:10]:
+    print(key, val)
+
+c={'a':10,'b':1,'c':22}
+print(sorted([(v,k) for k,v in c.items()]))
+
+
+name = input("Enter file:")
+if len(name) < 1 : name = "mbox-short.txt"
+fhand = open(name)
+
+counts=dict()
+for line in fhand:
+    line=line.rstrip()
+    if not line.startswith('From '):continue
+    words=words[5]
+    words=words.split(':')
+    counts[h]=counts.get(words,0)+1
+
+for key, val in list(counts.items()):
+    lst.append((val, key))
+
+lst.sort(reverse=True)
+
+for key, val in lst():
+    print(key, val)
